@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ingredients from '../data/Ingredient';
-import IngredientList from './IngredientList';
+import Section from './Section';
 
 export default function Form() {
   const [value, setValue] = useState(ingredients);
@@ -20,7 +20,7 @@ export default function Form() {
         />
         <button id="button">Add ingredient</button>
       </form>
-      <IngredientList newIngredientList={value} />
+      {value.length > 0 ? <Section value={value} /> : null}
     </>
   );
 }

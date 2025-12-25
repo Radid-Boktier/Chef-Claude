@@ -1,5 +1,5 @@
 export default function IngredientList({ newIngredientList }) {
-  console.log(newIngredientList);
+  // console.log(newIngredientList);
   return (
     <ul className="ingredient-list">
       {newIngredientList.map((item) => {
