@@ -6,7 +6,7 @@ export default function Section({ value }) {
     <section>
       <h2>Ingredients on hand:</h2>
       <IngredientList newIngredientList={value} />
-      {value.length > 3 ? <ReadyForEcipe /> : null}
+      {value.length > 3 ? <ReadyForEcipe IngredientList={value} /> : null}
     </section>
   );
 }

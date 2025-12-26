@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import getRecipeFromMistral from '../ai';
 import Recipecode from './RecipeCode';
 
-export default function ReadyForEcipe() {
-  const [recipeShown, setRecipeShown] = useState(false);
-  function handleGetRecipe() {
-    setRecipeShown((prevRecipeShown) => !prevRecipeShown);
+export default function ReadyForEcipe({ IngredientList }) {
+  const [recipe, setRecipe] = useState(false);
+  async function getRecipe() {
+    const recipeMarkdown = await getRecipeFromMistral(IngredientList);
+    // console.log(recipeMarkdown);
+    setRecipe(recipeMarkdown);
   }
   return (
     <>
@@ -13,9 +16,9 @@ export default function ReadyForEcipe() {
           <h3>Ready for a recipe?</h3>
           <p>Generate a recipe from your list of ingredients.</p>
         </div>
-        <button onClick={handleGetRecipe}>Get a recipe</button>
+        <button onClick={getRecipe}>Get a recipe</button>
       </div>
-      {recipeShown && <Recipecode />}
+      {recipe && <Recipecode recipe={recipe} />}
     </>
   );
 }
