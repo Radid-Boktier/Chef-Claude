@@ -1,18 +1,10 @@
-import { useState } from 'react';
-import getRecipeFromMistral from '../ai';
 import Recipecode from './RecipeCode';
 
-export default function ReadyForEcipe({ IngredientList }) {
-  const [recipe, setRecipe] = useState(false);
-  async function getRecipe() {
-    const recipeMarkdown = await getRecipeFromMistral(IngredientList);
-    // console.log(recipeMarkdown);
-    setRecipe(recipeMarkdown);
-  }
+export default function ReadyForRecipe({ ref, recipe, getRecipe }) {
   return (
     <>
       <div className="get-recipe-container">
-        <div>
+        <div ref={ref}>
           <h3>Ready for a recipe?</h3>
           <p>Generate a recipe from your list of ingredients.</p>
         </div>
